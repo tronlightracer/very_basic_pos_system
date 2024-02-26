@@ -71,3 +71,49 @@ def update_money_2nd_way(item, units):
         returned_item = process_return(item, units)
         total -= returned_item
     return total
+
+def main():
+    items = []
+
+    while True:
+        print("1. Add an item to the menu")
+        print("2. Update the stock level of an item")
+        print("3. Make a sale")
+        print("4. Give a discount")
+        print("5. process a return")
+        print("6. Get the total amount of money in the drawer")
+        print("7. Quit")
+        choice = int(input("Enter your choices: "))
+
+        if choice == 1:(
+            items.append(add_item())
+        elif choice == 2:
+            item_index = int(input("Enter the index of the item you want to update: "))
+            items[item_index] = update_stock(items[item_index])
+        elif choice == 3:
+            item_index = int(input("Enter the index of the item you want to sell: "))
+            total_cost = make_sale_of_one_item(items[item_index])
+            if total_cost > 0:
+                apply_discount = input("Do you want to apply a discount? (Y/N)")
+                if apply_discount.lower() == "y":
+                    total_cost = give_discount(total_cost)
+        elif choice == 4:
+            total_cost = float(input("Enter the total cost of the sale: "))
+            total_cost = give_discount(total_cost)
+        elif choice == 5:
+        item_index = int(input("Enter the index of the item you want to return: "))
+        process_return(items[item_index])
+        
+        elif choice == 6:
+            for item in items:
+                total = update_money(item)
+            print(f"The amount of money in the drawer is: {total}")
+                
+        elif choice == 7:
+            # quit the app
+            break
+        else:
+            print("Invalid choice! Please try again.")
+
+if __name__ == '__main__':
+    main()
