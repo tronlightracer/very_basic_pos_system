@@ -85,28 +85,37 @@ def main():
         print("7. Quit")
         choice = int(input("Enter your choices: "))
 
-        if choice == 1:(
+        if choice == 1:
             items.append(add_item())
         elif choice == 2:
             item_index = int(input("Enter the index of the item you want to update: "))
-            items[item_index] = update_stock(items[item_index])
+            unitss = int(input("Enter the amount of stock to add: "))
+            items[item_index] = update_stock(items[item_index], unitss)
         elif choice == 3:
             item_index = int(input("Enter the index of the item you want to sell: "))
-            total_cost = make_sale_of_one_item(items[item_index])
+            unitss = int(input("Enter the amount of stock to add: "))
+            total_cost = make_sale_of_one_item(items[item_index], unitss)
             if total_cost > 0:
                 apply_discount = input("Do you want to apply a discount? (Y/N)")
                 if apply_discount.lower() == "y":
-                    total_cost = give_discount(total_cost)
+                    discount_percentagee = float(input("Enter the discount"))
+                    total_cost = give_discount(total_cost, discount_percentagee)
         elif choice == 4:
             total_cost = float(input("Enter the total cost of the sale: "))
-            total_cost = give_discount(total_cost)
+            discount_percentagee = float(input("Enter the discount"))
+            total_cost = give_discount(total_cost, discount_percentagee)
         elif choice == 5:
-        item_index = int(input("Enter the index of the item you want to return: "))
-        process_return(items[item_index])
+            item_index = int(input("Enter the index of the item you want to return: "))
+            unitss = int(input("Enter the amount of stock to add: "))
+
+            process_return(items[item_index], unitss)
         
         elif choice == 6:
+            unitss = int(input("Enter the amount of stock to add: "))
+
             for item in items:
-                total = update_money(item)
+
+                total = update_money(item, unitss)
             print(f"The amount of money in the drawer is: {total}")
                 
         elif choice == 7:
