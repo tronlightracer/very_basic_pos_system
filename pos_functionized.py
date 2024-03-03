@@ -29,7 +29,9 @@ def make_sale_of_one_item(item, units):
     else:
         print("Insufficient stock!")
         total_cost = 0
-    return total_cost
+
+    total_recorded = update_money(item, units)
+    return total_cost, total_recorded
 
 def give_discount(total_cost, discount_percentage):
     # discount_percentage = float(input("Enter the discount"))
